@@ -5,6 +5,7 @@ public class Practice {
         P1();
         P2();
         P3();
+        P4();
     }
     public static void P1(){
         ArrayList<String> content = FileReader.read("data/P1.dat");
@@ -54,5 +55,8 @@ public class Practice {
             System.out.println(line);
             System.out.println();
         }
+    }
+    public static void P4(){
+
     }
 }
