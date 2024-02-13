@@ -1,11 +1,13 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Practice {
-    public static void main(String[] args) {
-        P1();
-        P2();
-        P3();
-        P4();
+    public static void main(String[] args) throws Exception {
+        P1();//basketball
+        P2();//Oomlaw's Principle
+        P3();//Palindrome
+        P4();//cost of christmas
+        P5();
     }
     public static void P1(){
         ArrayList<String> content = FileReader.read("data/P1.dat");
@@ -56,7 +58,36 @@ public class Practice {
             System.out.println();
         }
     }
-    public static void P4(){
-
+    public static void P4() throws Exception{
+        Scanner c = new Scanner(new File("data/P4.dat"));
+        int count = c.nextInt(); 
+        ArrayList<Integer> b = new ArrayList<>();
+        ArrayList<Double> d = new ArrayList<>();
+        for(int i = 0; i<count; i++){
+            int cost = 0;
+            int pres = c.nextInt();
+            c.nextLine();
+            String name = c.nextLine();
+            for(int j = 0; j<pres; j++){
+                b.add(c.nextInt());
+            }
+            for(int j = 0; j<pres; j++){
+                d.add(c.nextDouble());
+            }
+            for(int h = 0; h<pres; h++){
+                cost += (b.get(h)*d.get(h));
+            }
+            if(cost>0){
+                System.out.println("It will cost Sammy Klaws $" + cost + " to make " + name + " happy this Christmas!");
+            }else{
+                System.out.println("It will be free for Sammy Klaws to make " + name + " happy this Christmas!");
+            }
+            b.clear();
+            d.clear();
+        }
+        c.close();
+    }
+    public static void P5(){
+        
     }
 }
