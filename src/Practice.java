@@ -10,7 +10,7 @@ public class Practice {
        // P4();  //cost of christmas
        // P5();  //Snowflake
         // P6();  //Pizza
-        // P7();
+         P7();  //Lift Issues
     }
     public static void P1(){
         ArrayList<String> content = FileReader.read("data/P1.dat");
@@ -221,6 +221,15 @@ public class Practice {
         }
     }
     public static void P7() throws Exception{
-        
+        Scanner c = new Scanner(new File("data/P7.dat"));
+        int count = c.nextInt();
+        for(int i = 0; i<count; i++){
+            int cur = c.nextInt();
+            if(cur<=21200){
+                System.out.println("Sammy Klaws can continue to bring joy to the world!");
+            }else{
+                System.out.println("Steb tried his best, but Sammy Klaws was just too heavy...no more joy to the world.");
+            }
+        }
     }
 }
