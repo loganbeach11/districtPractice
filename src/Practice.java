@@ -1,4 +1,5 @@
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,7 +11,9 @@ public class Practice {
        // P4();  //cost of christmas
        // P5();  //Snowflake
         // P6();  //Pizza
-         P7();  //Lift Issues
+        // P7();  //Lift Issues
+        // P8();  // Lies (unfinished)
+         P9(); //wrapping
     }
     public static void P1(){
         ArrayList<String> content = FileReader.read("data/P1.dat");
@@ -231,5 +234,74 @@ public class Practice {
                 System.out.println("Steb tried his best, but Sammy Klaws was just too heavy...no more joy to the world.");
             }
         }
+    }
+    public static void P8() throws Exception{
+        Scanner c = new Scanner(new File("data/P8.dat"));
+        //int count = c.nextInt();
+        c.nextLine();
+        ArrayList<String> res = new ArrayList<>();
+        for(int i = 0; i<1; i++){ //count
+            ArrayList<String[]> cur = new ArrayList<>();
+            for(int j = 0; j<3; j++){
+                String cu = c.nextLine();
+               String[] current = cu.split(" ");
+               cur.add(current);
+
+            }
+            for(int f = 0;f<cur.size(); f++){
+                String[] cur1 = cur.get(f);
+                
+            }
+            System.out.println(Arrays.toString(cur.get(0)));
+            System.out.println(Arrays.toString(cur.get(1)));
+            System.out.println(Arrays.toString(cur.get(2)));
+        }
+    }
+    public static void P9() throws Exception{
+        Scanner c = new Scanner(new File("data/P9.dat"));
+        Scanner s = new Scanner(new File("data/P9.dat"));
+        int count = c.nextInt();
+        ArrayList<String> boxes = new ArrayList<String>(Arrays.asList("No Box","Cardboard Box", "Fancy Cardboard Box", "Autographed Box"));
+        ArrayList<Double> boxes1 = new ArrayList<Double>(Arrays.asList(0.00, 1.08, 2.15, 15.00));
+        ArrayList<String> papers = new ArrayList<String>(Arrays.asList("No Wrapping Paper", "Grocery Bag",  "Budget Wrapping Paper", "Fancy Wrapping Paper", "North Pole Wrapping Paper"));
+       ArrayList<Double> paper1 = new ArrayList<Double>(Arrays.asList(0.00,0.33, 0.87, 1.73, 3.46));
+       s.nextLine();
+        for(int i = 0; i<count; i++){
+            String line = s.nextLine();
+            int space = line.indexOf(" ");
+            char check = line.charAt(space+1);
+            String name = c.next();
+            if(!Character.isDigit(check)){
+                name+= " " + c.next();
+            }
+            ArrayList<String> output1 = new ArrayList<String>(Arrays.asList(" "));   
+            String output = "";      
+            int cost = c.nextInt();
+            int budget = c.nextInt()-cost;
+            double length = (c.nextInt() + 0.00)/12.00;
+            double width = (c.nextInt() + 0.00)/12.00;
+            double height = (c.nextInt() + 0.00)/12.00;
+            double area = ((2*length*width) + (2*length*height) + (2*height*width));
+            double volume = (length*width*height);
+            if(budget<0){
+                output += "Can't  Afford " + name + " :(";
+            }else{
+                output += name + ": ";
+                output1.add(name + ": ");
+                if( budget < ( volume * boxes1.get(1) )){
+                    output +=  "No Box and No Wrapping Paper";
+                }else{
+                    
+                }
+            }
+            for(int j = 1; j<output1.size(); j++){
+                System.out.print(output1.get(i));
+                System.out.println();
+            }
+            output1.clear();
+          System.out.println(output);
+        }
+        c.close();
+        s.close();
     }
 }
