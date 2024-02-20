@@ -278,6 +278,7 @@ public class Practice {
             String output = "";      
             int cost = c.nextInt();
             int budget = c.nextInt()-cost;
+            int budget1 = budget;
             double length = (c.nextInt() + 0.00)/12.00;
             double width = (c.nextInt() + 0.00)/12.00;
             double height = (c.nextInt() + 0.00)/12.00;
@@ -285,21 +286,52 @@ public class Practice {
             double volume = (length*width*height);
             if(budget<0){
                 output += "Can't  Afford " + name + " :(";
+                output1.set(0,"Can't Afford " + name  + " :(");
             }else{
                 output += name + ": ";
-                output1.add(name + ": ");
+                output1.set(0, name + ": ");
                 if( budget < ( volume * boxes1.get(1) )){
                     output +=  "No Box and No Wrapping Paper";
+                    output1.add( "No Box and No Wrapping Paper");
                 }else{
-                    
+                    output1.add(" Cardboard Box ");
+                    budget -= volume*boxes1.get(1);
+                    budget1 -= volume*boxes1.get(1);   
+                    if(budget < paper1.get(1)*area){
+                        output1.add(" and Grocery Bag");
+                        budget -= area*paper1.get(1);
+                    }else{
+                        output1.add( " and No Wrapping Paper");
+                    }
                 }
             }
-            for(int j = 1; j<output1.size(); j++){
-                System.out.print(output1.get(i));
-                System.out.println();
+            int best = 0;
+            if(output1.size() == 3){
+               for(int h = 0; h<paper1.size(); h++){
+                    if(paper1.get(h)*area <= budget1){
+                      output1.set(2, " and " + papers.get(h));
+                      best = h;
+                    }
+                }
             }
+            budget1 -= paper1.get(best)*area;
+            int best1 = 0;
+            if(output1.size() == 3){
+               for(int h = 0; h<boxes1.size(); h++){
+                    if(boxes1.get(h)*volume <= budget1+(volume*boxes1.get(1))){
+                      output1.set(1, " " + boxes.get(h));
+                      best1 = h;
+                    }
+                }
+            }
+            budget1 -= boxes1.get(best1)*volume;
+            //System.out.println(output1);
+            for(int j = 0; j<output1.size(); j++){
+                System.out.print(output1.get(j));
+             }
+             System.out.println();
             output1.clear();
-          System.out.println(output);
+          //System.out.println(output);
         }
         c.close();
         s.close();
